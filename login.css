@@ -1,0 +1,276 @@
+/* =========================
+   LOGIN • TEMA POR IMAGEM + ANIME VIBE
+   - Claro: vermelho + bege
+   - Escuro: azul + roxo neon
+========================= */
+
+:root{
+  --radius: 1.25rem;
+
+  /* (Tema CLARO) */
+  --light-bg: #f9e8c9;
+  --light-text: #181012;
+  --light-muted: #71373a;
+  --light-primary: #e02a2e;
+  --light-accent: #ff4d5a;
+  --light-surface: rgba(255, 255, 255, 0.78);
+  --light-border: rgba(63, 41, 46, 0.18);
+
+  /* (Tema ESCURO) */
+  --dark-bg: #0f1430;
+  --dark-surface: rgba(25, 35, 85, 0.78);
+  --dark-border: rgba(160, 174, 240, 0.16);
+  --dark-text: #e2e3f9;
+  --dark-muted: rgba(160, 174, 240, 0.90);
+
+  --dark-primary: #4a55c1; /* azul */
+  --dark-accent: #c861f1;  /* roxo neon */
+
+  /* Imagens */
+  --bg-light-image: url("./Tema-Claro.webp");
+  --bg-dark-image: url("./Tema-Escuro.webp");
+
+  /* Glow (padrão, ajustado por tema abaixo) */
+  --glow-1: rgba(0,0,0,0);
+  --glow-2: rgba(0,0,0,0);
+}
+
+/* ====== Transições suaves (vibe premium) ====== */
+*{
+  transition: background-color .18s ease, border-color .18s ease, color .18s ease, transform .18s ease, box-shadow .18s ease;
+}
+
+body{
+  min-height: 100vh;
+  background: var(--bs-body-bg);
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* =========================
+   CLARO (vermelho + bege)
+========================= */
+html[data-bs-theme="light"]{
+  --bs-body-bg: var(--light-bg);
+  --bs-body-color: var(--light-text);
+  --bs-primary: var(--light-primary);
+  --bs-link-color: var(--light-primary);
+  --bs-link-hover-color: #b81f22;
+  --bs-border-color: var(--light-border);
+  --bs-secondary-color: rgba(113, 55, 58, 0.85);
+
+  --glow-1: rgba(224, 42, 46, 0.35);
+  --glow-2: rgba(255, 77, 90, 0.25);
+}
+
+/* Fundo com imagem + overlay (CLARO) */
+html[data-bs-theme="light"] body::before{
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background-image: var(--bg-light-image);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: saturate(1.1) contrast(1.05);
+  transform: scale(1.02);
+}
+
+html[data-bs-theme="light"] body::after{
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(900px 520px at 20% 15%, rgba(224, 42, 46, 0.18), transparent 60%),
+    radial-gradient(800px 480px at 85% 20%, rgba(113, 55, 58, 0.18), transparent 55%),
+    linear-gradient(to bottom, rgba(249, 232, 201, 0.90), rgba(249, 232, 201, 0.70));
+}
+
+/* =========================
+   ESCURO (azul + roxo neon)
+========================= */
+html[data-bs-theme="dark"]{
+  --bs-body-bg: var(--dark-bg);
+  --bs-body-color: var(--dark-text);
+
+  --bs-primary: var(--dark-primary);
+  --bs-link-color: var(--dark-accent);
+  --bs-link-hover-color: #e2a8ff;
+
+  --bs-border-color: var(--dark-border);
+  --bs-secondary-color: var(--dark-muted);
+
+  --glow-1: rgba(74, 85, 193, 0.42);
+  --glow-2: rgba(200, 97, 241, 0.28);
+}
+
+/* Fundo com imagem + overlay (ESCURO) */
+html[data-bs-theme="dark"] body::before{
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background-image: var(--bg-dark-image);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: saturate(1.05) contrast(1.08) brightness(0.85);
+  transform: scale(1.02);
+}
+
+html[data-bs-theme="dark"] body::after{
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(900px 520px at 18% 18%, rgba(74, 85, 193, 0.22), transparent 60%),
+    radial-gradient(900px 520px at 85% 22%, rgba(200, 97, 241, 0.16), transparent 55%),
+    linear-gradient(to bottom, rgba(15, 20, 48, 0.70), rgba(15, 20, 48, 0.92));
+}
+
+/* =========================
+   SUPERFÍCIES (glass + glow)
+========================= */
+.bg-body{
+  border-radius: var(--radius);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* Claro */
+html[data-bs-theme="light"] .bg-body{
+  background: var(--light-surface) !important;
+  border: 1px solid var(--light-border);
+  box-shadow: 0 18px 40px rgba(63,41,46,0.18);
+}
+
+/* Escuro */
+html[data-bs-theme="dark"] .bg-body{
+  background: var(--dark-surface) !important;
+  border: 1px solid var(--dark-border);
+  box-shadow: 0 18px 50px rgba(0,0,0,0.45);
+}
+
+/* Painel esquerdo */
+.auth-side{
+  border-right: 1px solid var(--bs-border-color);
+}
+
+html[data-bs-theme="light"] .auth-side{
+  background: linear-gradient(135deg, rgba(224, 42, 46, 0.14), rgba(113, 55, 58, 0.10));
+}
+
+html[data-bs-theme="dark"] .auth-side{
+  background: linear-gradient(135deg, rgba(74, 85, 193, 0.18), rgba(200, 97, 241, 0.12));
+}
+
+/* badge do ícone */
+.brand-badge{
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+}
+
+html[data-bs-theme="light"] .brand-badge{
+  background: rgba(224, 42, 46, 0.14);
+  border: 1px solid rgba(224, 42, 46, 0.28);
+  color: #8b1b1e;
+}
+
+html[data-bs-theme="dark"] .brand-badge{
+  background: rgba(200, 97, 241, 0.16);
+  border: 1px solid rgba(200, 97, 241, 0.28);
+  color: rgba(226, 227, 249, 0.95);
+}
+
+/* =========================
+   BOTÃO PRIMARY COM GLOW
+========================= */
+.btn-primary{
+  position: relative;
+  overflow: hidden;
+  transform: translateZ(0);
+}
+
+/* brilho “passando” */
+.btn-primary::before{
+  content: "";
+  position: absolute;
+  inset: -2px;
+  background: radial-gradient(120px 40px at 10% 50%, rgba(255,255,255,0.35), transparent 60%);
+  opacity: 0.0;
+  transform: translateX(-20%);
+}
+
+.btn-primary:hover{
+  box-shadow:
+    0 0 0 4px rgba(255,255,255,0.06),
+    0 14px 40px var(--glow-1),
+    0 0 22px var(--glow-2);
+  transform: translateY(-1px);
+}
+
+.btn-primary:hover::before{
+  opacity: 0.55;
+  transform: translateX(55%);
+}
+
+.btn-primary:active{
+  transform: translateY(0px);
+}
+
+.preencher-auto{
+  margin-bottom: 1rem;
+}
+
+/* =========================
+   INPUTS COM FOCO “NEON”
+========================= */
+.form-control:focus,
+.form-select:focus{
+  box-shadow: 0 0 0 0.25rem rgba(13,110,253,0.15);
+}
+
+html[data-bs-theme="light"] .form-control:focus,
+html[data-bs-theme="light"] .form-select:focus{
+  border-color: rgba(224, 42, 46, 0.55);
+  box-shadow: 0 0 0 0.25rem rgba(224, 42, 46, 0.15);
+}
+
+html[data-bs-theme="dark"] .form-control:focus,
+html[data-bs-theme="dark"] .form-select:focus{
+  border-color: rgba(200, 97, 241, 0.55);
+  box-shadow: 0 0 0 0.25rem rgba(200, 97, 241, 0.16);
+}
+
+/* =========================
+   CARDS LISTA (usuários demo)
+========================= */
+.list-group-item{
+  border-color: rgba(255,255,255,0.0);
+}
+
+html[data-bs-theme="light"] .list-group-item{
+  background: rgba(255,255,255,0.60);
+  border: 1px solid rgba(63,41,46,0.12);
+}
+
+html[data-bs-theme="dark"] .list-group-item{
+  background: rgba(15, 20, 48, 0.28);
+  border: 1px solid rgba(160,174,240,0.12);
+}
+
+/* =========================
+   TOASTS (mais anime)
+========================= */
+.toast{
+  border-radius: 14px;
+  box-shadow: 0 16px 40px rgba(0,0,0,0.20);
+}
